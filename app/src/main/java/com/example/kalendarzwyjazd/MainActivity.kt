@@ -69,7 +69,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
+    //inne zmienne
+    val kalendarz = findViewById<CalendarView>(R.id.calendar)
+    val poczatek = mutableListOf(0,0,0)
+    val koniec = mutableListOf(0,0,0)
+    val data = arrayListOf(zmian(kalendarz.date)[0] ,zmian(kalendarz.date)[1] ,zmian(kalendarz.date)[2])
+    
 
 
 
