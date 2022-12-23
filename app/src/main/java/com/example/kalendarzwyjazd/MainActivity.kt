@@ -1,13 +1,13 @@
 package com.example.kalendarzwyjazd
 
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.math.absoluteValue
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     val przyjazd = findViewById<TextView>(R.id.text5)
 
     //Zamaina formatu daty
+    @SuppressLint("SimpleDateFormat")
     fun zmian(czas: Long): List<Int>{
         val date = Date(czas)
         val dateFormat = SimpleDateFormat("dd/MM/yyyy")
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         return formDate
     }
 
+    @SuppressLint("SetTextI18n")
     fun rezerwacja(koniec: MutableList<Int>, poczatek : MutableList<Int>, czastrwania : TextView) {
         val wyjazdoblicz = (poczatek[2] * 360) + (poczatek[1] * 30) + poczatek[0]
         val przyjazdoblicz = (koniec[2] * 360) + (koniec[1] * 30) + koniec[0]
@@ -77,8 +79,8 @@ class MainActivity : AppCompatActivity() {
     val koniec = mutableListOf(0,0,0)
     val data = arrayListOf(zmian(kalendarz.date)[0] ,zmian(kalendarz.date)[1] ,zmian(kalendarz.date)[2])
 
-    kalendarz.minDate = Date().time
-    kalendarz.maxDate = Date().time + 63115200000
+    kalendarz.minDate = Date(0).time
+    kalendarz.maxDate = Date(0).time + 63115200000
 
 
     //Lista
