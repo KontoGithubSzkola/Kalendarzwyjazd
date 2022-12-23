@@ -1,10 +1,12 @@
 package com.example.kalendarzwyjazd
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.absoluteValue
@@ -13,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
+
     //zmienne przyciski
     val data_przyjazdu = findViewById<Button>(R.id.poczatek)
     val data_wyjazdu = findViewById<Button>(R.id.Koniec)
@@ -69,13 +71,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
     //inne zmienne
     val kalendarz = findViewById<CalendarView>(R.id.calendar)
     val poczatek = mutableListOf(0,0,0)
     val koniec = mutableListOf(0,0,0)
     val data = arrayListOf(zmian(kalendarz.date)[0] ,zmian(kalendarz.date)[1] ,zmian(kalendarz.date)[2])
-    
+
+    kalendarz.minDate = Date().time
+    kalendarz.maxDate = Date().time + 63115200000
+
+
+    //Lista
+    kalendarz.setOnDateChangeListener{_, d, m, y ->
+        data[0] = y
+        data[1] = m+1
+        data[2] = d
+    }
 
 
 
+
+
+
+
+
+}
 }
