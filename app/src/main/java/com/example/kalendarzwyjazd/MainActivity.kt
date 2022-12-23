@@ -7,6 +7,7 @@ import android.widget.CalendarView
 import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.absoluteValue
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,12 @@ class MainActivity : AppCompatActivity() {
         return formDate
     }
 
+    fun rezerwacja(koniec: MutableList<Int>, poczatek : MutableList<Int>, czas_trwania : TextView) {
+        val wyjazdoblicz = (poczatek[2] * 360) + (poczatek[1] * 30) + poczatek[0]
+        val przyjazdoblicz = (koniec[2] * 360) + (koniec[1] * 30) + koniec[0]
+        val iloscdni = wyjazdoblicz.toChar() - przyjazdoblicz.toChar()
+        czastrwania.text = " ${System.lineSeparator()}${iloscdni.absoluteValue + 1}"
+    }
 
 
 
