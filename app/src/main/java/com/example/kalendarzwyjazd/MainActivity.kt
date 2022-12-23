@@ -1,11 +1,10 @@
 package com.example.kalendarzwyjazd
 
-import android.annotation.SuppressLint
+
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CalendarView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import java.text.SimpleDateFormat
 import java.util.*
@@ -88,6 +87,23 @@ class MainActivity : AppCompatActivity() {
         data[1] = m+1
         data[2] = d
     }
+
+
+        rezerwuj.setOnClickListener{
+            podm(koniec,poczatek,przyjazd,wyjazd)
+            rezerwacja(poczatek, koniec, czastrwania)
+        }
+        data_przyjazdu.setOnClickListener {
+            for (i in 0 until 3)
+                poczatek[i] = data[i]
+            przyjazd.text =  "${System.lineSeparator()}${poczatek[0]}-${poczatek[1]}-${poczatek[2]}"
+        }
+
+        data_wyjazdu.setOnClickListener {
+            for (i in 0 until 3)
+                koniec[i] = data[i]
+            wyjazd.text = "${System.lineSeparator()}${koniec[0]}-${koniec[1]}-${koniec[2]}"
+        }
 
 
 
