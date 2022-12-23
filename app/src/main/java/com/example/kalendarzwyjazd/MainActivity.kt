@@ -34,13 +34,41 @@ class MainActivity : AppCompatActivity() {
         return formDate
     }
 
-    fun rezerwacja(koniec: MutableList<Int>, poczatek : MutableList<Int>, czas_trwania : TextView) {
+    fun rezerwacja(koniec: MutableList<Int>, poczatek : MutableList<Int>, czastrwania : TextView) {
         val wyjazdoblicz = (poczatek[2] * 360) + (poczatek[1] * 30) + poczatek[0]
         val przyjazdoblicz = (koniec[2] * 360) + (koniec[1] * 30) + koniec[0]
         val iloscdni = wyjazdoblicz.toChar() - przyjazdoblicz.toChar()
         czastrwania.text = " ${System.lineSeparator()}${iloscdni.absoluteValue + 1}"
     }
 
+    //Podmienianie daty
+    fun podm(koniec: MutableList<Int>, poczatek : MutableList<Int>, przyjazd : TextView, wyjazd : TextView) {
+        if(poczatek[0] > koniec[0]){
+            for (i in 0 until 3) {
+                poczatek[i]
+            }
+            przyjazd.text = wyjazd.text
+            wyjazd.text = "${System.lineSeparator()}${poczatek[0]}-${poczatek[1]}-${poczatek[2]}"
+        }
+        else if(poczatek[0] == koniec[0]){
+            if(poczatek[1] > koniec[1]){
+                for (i in 0 until 3) {
+                    poczatek[i]
+                }
+                przyjazd.text = wyjazd.text
+                wyjazd.text = "${System.lineSeparator()}${poczatek[0]}-${poczatek[1]}-${poczatek[2]}"
+            }
+            else if(poczatek[1] == koniec[1]){
+                if(poczatek[2] > koniec[2]){
+                    for (i in 0 until 3) {
+                        poczatek[i]
+                    }
+                    przyjazd.text = wyjazd.text
+                    wyjazd.text = "${System.lineSeparator()}${poczatek[0]}-${poczatek[1]}-${poczatek[2]}"
+                }
+            }
+        }
+    }
 
 
 
